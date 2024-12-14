@@ -1,5 +1,6 @@
 using Hotel_Management.Model;
 using HotelManagement.Repositories;
+using HotelManagementNew.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hotel_Management
@@ -17,9 +18,12 @@ namespace Hotel_Management
             });
 
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddDbContext<HotelManagementContext>(options =>
+            builder.Services.AddDbContext<HotelManagementContext>(options => 
                 options.UseSqlServer(builder.Configuration.GetConnectionString("PropelAug24Connection")));
             builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+            builder.Services.AddScoped<IGuestRepository, GuestRepository>();
+
 
 
             var app = builder.Build();
